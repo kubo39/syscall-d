@@ -1,0 +1,7 @@
+{
+    "name": "hello",
+    "description": "syscall write example.",
+    "dependencies": {
+        "syscall.d": {"version": "~master", "path": "../"}
+    }
+}
