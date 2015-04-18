@@ -441,23 +441,21 @@ ulong syscall(T...)(T args)
 {
   static if (args.length)
   {
-    ulong result;
-
     static if (args.length == 1)
-      result = syscall0(args);
+      return syscall0(args);
     static if (args.length == 2)
-      result = syscall1(args);
+      return syscall1(args);
     static if (args.length == 3)
-      result = syscall2(args);
+      return syscall2(args);
     static if (args.length == 4)
-      result = syscall3(args);
+      return syscall3(args);
     static if (args.length == 5)
-      result = syscall4(args);
+      return syscall4(args);
     static if (args.length == 6)
-      result = syscall5(args);
+      return syscall5(args);
     static if (args.length == 7)
-      result = syscall6(args);
-    return result;
+      return syscall6(args);
+    assert(false);
   }
   else static assert(false);
 }
