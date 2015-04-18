@@ -1,5 +1,14 @@
 module syscall;
 
+version(linux)
+{
+  version(X86_64)
+    version = SupportedPlatform;
+}
+
+
+version(SupportedPlatform):
+@system:
 
 immutable ulong READ                     = 0;
 immutable ulong WRITE                    = 1;
