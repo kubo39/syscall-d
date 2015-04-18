@@ -325,7 +325,7 @@ immutable ulong KEXEC_FILE_LOAD          = 320;
 immutable ulong BPF                      = 321;
 
 
-ulong syscall0(ulong ident)
+ulong syscall(ulong ident)
 {
   ulong ret;
 
@@ -338,7 +338,7 @@ ulong syscall0(ulong ident)
 }
 
 
-ulong syscall1(ulong ident, ulong n)
+ulong syscall(ulong ident, ulong n)
 {
   ulong ret;
 
@@ -352,7 +352,7 @@ ulong syscall1(ulong ident, ulong n)
 }
 
 
-ulong syscall2(ulong ident, ulong n, ulong arg1)
+ulong syscall(ulong ident, ulong n, ulong arg1)
 {
   ulong ret;
 
@@ -367,7 +367,7 @@ ulong syscall2(ulong ident, ulong n, ulong arg1)
 }
 
 
-ulong syscall3(ulong ident, ulong n, ulong arg1, ulong arg2)
+ulong syscall(ulong ident, ulong n, ulong arg1, ulong arg2)
 {
   ulong ret;
 
@@ -383,7 +383,7 @@ ulong syscall3(ulong ident, ulong n, ulong arg1, ulong arg2)
 }
 
 
-ulong syscall4(ulong ident, ulong n, ulong arg1, ulong arg2, ulong arg3)
+ulong syscall(ulong ident, ulong n, ulong arg1, ulong arg2, ulong arg3)
 {
   ulong ret;
 
@@ -400,7 +400,7 @@ ulong syscall4(ulong ident, ulong n, ulong arg1, ulong arg2, ulong arg3)
 }
 
 
-ulong syscall5(ulong ident, ulong n, ulong arg1, ulong arg2, ulong arg3, ulong arg4)
+ulong syscall(ulong ident, ulong n, ulong arg1, ulong arg2, ulong arg3, ulong arg4)
 {
   ulong ret;
 
@@ -418,7 +418,7 @@ ulong syscall5(ulong ident, ulong n, ulong arg1, ulong arg2, ulong arg3, ulong a
 }
 
 
-ulong syscall6(ulong ident, ulong n, ulong arg1, ulong arg2, ulong arg3, ulong arg4, ulong arg5)
+ulong syscall(ulong ident, ulong n, ulong arg1, ulong arg2, ulong arg3, ulong arg4, ulong arg5)
 {
   ulong ret;
 
@@ -434,30 +434,6 @@ ulong syscall6(ulong ident, ulong n, ulong arg1, ulong arg2, ulong arg3, ulong a
     mov ret, RAX;
   }
   return ret;
-}
-
-
-ulong syscall(T...)(T args)
-{
-  static if (args.length)
-  {
-    static if (args.length == 1)
-      return syscall0(args);
-    static if (args.length == 2)
-      return syscall1(args);
-    static if (args.length == 3)
-      return syscall2(args);
-    static if (args.length == 4)
-      return syscall3(args);
-    static if (args.length == 5)
-      return syscall4(args);
-    static if (args.length == 6)
-      return syscall5(args);
-    static if (args.length == 7)
-      return syscall6(args);
-    assert(false);
-  }
-  else static assert(false);
 }
 
 
