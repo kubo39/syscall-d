@@ -344,7 +344,7 @@ ulong syscall1(ulong ident, ulong n)
 
   synchronized asm {
     mov RAX, ident;
-    mov RDI, n[EBP];
+    mov RDI, n[RBP];
     syscall;
     mov ret, RAX;
   }
@@ -358,7 +358,7 @@ ulong syscall2(ulong ident, ulong n, ulong arg1)
 
   synchronized asm {
     mov RAX, ident;
-    mov RDI, n[EBP];
+    mov RDI, n[RBP];
     mov RSI, arg1[RBP];
     syscall;
     mov ret, RAX;
@@ -373,7 +373,7 @@ ulong syscall3(ulong ident, ulong n, ulong arg1, ulong arg2)
 
   synchronized asm {
     mov RAX, ident;
-    mov RDI, n[EBP];
+    mov RDI, n[RBP];
     mov RSI, arg1[RBP];
     mov RDX, arg2[RBP];
     syscall;
@@ -389,7 +389,7 @@ ulong syscall4(ulong ident, ulong n, ulong arg1, ulong arg2, ulong arg3)
 
   synchronized asm {
     mov RAX, ident;
-    mov RDI, n[EBP];
+    mov RDI, n[RBP];
     mov RSI, arg1[RBP];
     mov RDX, arg2[RBP];
     mov R10, arg3[RBP];
@@ -406,7 +406,7 @@ ulong syscall5(ulong ident, ulong n, ulong arg1, ulong arg2, ulong arg3, ulong a
 
   synchronized asm {
     mov RAX, ident;
-    mov RDI, n[EBP];
+    mov RDI, n[RBP];
     mov RSI, arg1[RBP];
     mov RDX, arg2[RBP];
     mov R10, arg3[RBP];
@@ -424,7 +424,7 @@ ulong syscall6(ulong ident, ulong n, ulong arg1, ulong arg2, ulong arg3, ulong a
 
   synchronized asm {
     mov RAX, ident;
-    mov RDI, n[EBP];
+    mov RDI, n[RBP];
     mov RSI, arg1[RBP];
     mov RDX, arg2[RBP];
     mov R10, arg3[RBP];
