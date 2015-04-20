@@ -2,5 +2,20 @@
 
 Raw syscall interface for D.
 
-DMD D Compiler >= 2.067.0 and Linux with x86_64 arch support only.
+## Prerequirements
 
+* DMD D Compiler >= 2.067.0
+
+* Linux with x86_64 arch support only
+
+## Example
+
+```d
+import syscall : syscall, WRITE;
+
+void main()
+{
+  string buf = "Hello\n";
+  syscall(WRITE, 1, cast(ulong) buf.ptr, cast(ulong) buf.length);
+}
+```
