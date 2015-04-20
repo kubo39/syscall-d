@@ -1,7 +1,7 @@
 {
     "name": "syscall.d",
     "description": "syscall interface for D",
-    "license": "",
+    "license": "MIT",
     "authors": ["kubo39"],
     "targetName": "syscall",
     "targetType": "staticLibrary",
