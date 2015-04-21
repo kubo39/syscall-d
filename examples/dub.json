@@ -7,7 +7,6 @@
     "buildTypes": {
         "smallbin": {
             "buildOptions": ["noBoundsCheck", "releaseMode"],
-            "targetType": "staticLibrary"
         }
     }
 }
