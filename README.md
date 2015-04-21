@@ -38,14 +38,14 @@ void main()
 You can try example from this repositry.
 
 ```
-% cd syscall.d/example
+% cd syscall.d/examples
 $ dub build
 $ ./hello
 ```
 
-### small static bainary
+### small static binary
 
 ```
-% cd syscall.d/example
+% cd syscall.d/examples
 $ dub build --build=smallbin
 ```
