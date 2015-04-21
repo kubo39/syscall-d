@@ -3,5 +3,11 @@
     "description": "syscall write example.",
     "dependencies": {
         "syscall.d": {"version": "~master", "path": "../"}
+    },
+    "buildTypes": {
+        "smallbin": {
+            "buildOptions": ["noBoundsCheck", "releaseMode"],
+            "targetType": "staticLibrary"
+        }
     }
 }

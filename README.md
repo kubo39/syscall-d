@@ -19,13 +19,19 @@ $ dub build
 
 ## Example
 
+### executable binary
+
 ```d
 import syscall : syscall, WRITE;
 
+ulong write(ulong fd, string buf)
+{
+  return syscall(WRITE, 1, cast(ulong) buf.ptr, cast(ulong) buf.length);
+}
+
 void main()
 {
-  string buf = "Hello\n";
-  syscall(WRITE, 1, cast(ulong) buf.ptr, cast(ulong) buf.length);
+  write(1L, "Hello\n");
 }
 ```
 
@@ -35,4 +41,11 @@ You can try example from this repositry.
 % cd syscall.d/example
 $ dub build
 $ ./hello
+```
+
+### small static bainary
+
+```
+% cd syscall.d/example
+$ dub build --build=smallbin
 ```
