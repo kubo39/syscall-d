@@ -42,10 +42,3 @@ You can try example from this repositry.
 $ dub build
 $ ./hello
 ```
-
-### small static binary
-
-```
-% cd syscall.d/examples
-$ dub build --build=smallbin
-```
