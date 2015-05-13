@@ -19,8 +19,6 @@ $ dub build
 
 ## Example
 
-### executable binary
-
 ```d
 import syscall : syscall, WRITE;
 
@@ -34,12 +32,4 @@ void main()
   ulong stdout = 1;
   write(stdout, "Hello\n");
 }
-```
-
-You can try example from this repositry.
-
-```
-% cd syscall.d/examples
-$ dub build
-$ ./hello
 ```
