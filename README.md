@@ -6,7 +6,7 @@ Raw syscall interface for D.
 
 * DMD D Compiler >= 2.067.0
 
-* Linux with x86_64 arch support only
+* Linux/OSX with x86_64 arch support only
 
 * DUB >= 0.9.22 (Optional)
 
