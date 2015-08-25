@@ -2,9 +2,10 @@ module syscall;
 
 @system:
 
-version(linux)
+version(D_InlineAsm_X86_64)
 {
-  version(X86_64) {
+  version(linux)
+  {
     immutable ulong READ                     = 0;
     immutable ulong WRITE                    = 1;
     immutable ulong OPEN                     = 2;
@@ -327,122 +328,470 @@ version(linux)
     immutable ulong MEMFD_CREATE             = 319;
     immutable ulong KEXEC_FILE_LOAD          = 320;
     immutable ulong BPF                      = 321;
-
-
-    ulong syscall(ulong ident)
-    {
-      ulong ret;
-
-      synchronized asm {
-          mov RAX, ident;
-          syscall;
-          mov ret, RAX;
-        }
-      return ret;
-    }
-
-
-    ulong syscall(ulong ident, ulong n)
-    {
-      ulong ret;
-
-      synchronized asm {
-          mov RAX, ident;
-          mov RDI, n[RBP];
-          syscall;
-          mov ret, RAX;
-        }
-      return ret;
-    }
-
-
-    ulong syscall(ulong ident, ulong n, ulong arg1)
-    {
-      ulong ret;
-
-      synchronized asm {
-          mov RAX, ident;
-          mov RDI, n[RBP];
-          mov RSI, arg1[RBP];
-          syscall;
-          mov ret, RAX;
-        }
-      return ret;
-    }
-
-
-    ulong syscall(ulong ident, ulong n, ulong arg1, ulong arg2)
-    {
-      ulong ret;
-
-      synchronized asm {
-          mov RAX, ident;
-          mov RDI, n[RBP];
-          mov RSI, arg1[RBP];
-          mov RDX, arg2[RBP];
-          syscall;
-          mov ret, RAX;
-        }
-      return ret;
-    }
-
-
-    ulong syscall(ulong ident, ulong n, ulong arg1, ulong arg2, ulong arg3)
-    {
-      ulong ret;
-
-      synchronized asm {
-          mov RAX, ident;
-          mov RDI, n[RBP];
-          mov RSI, arg1[RBP];
-          mov RDX, arg2[RBP];
-          mov R10, arg3[RBP];
-          syscall;
-          mov ret, RAX;
-        }
-      return ret;
-    }
-
-
-    ulong syscall(ulong ident, ulong n, ulong arg1, ulong arg2, ulong arg3, ulong arg4)
-    {
-      ulong ret;
-
-      synchronized asm {
-          mov RAX, ident;
-          mov RDI, n[RBP];
-          mov RSI, arg1[RBP];
-          mov RDX, arg2[RBP];
-          mov R10, arg3[RBP];
-          mov R8, arg4[RBP];
-          syscall;
-          mov ret, RAX;
-        }
-      return ret;
-    }
-
-
-    ulong syscall(ulong ident, ulong n, ulong arg1, ulong arg2, ulong arg3, ulong arg4, ulong arg5)
-    {
-      ulong ret;
-
-      synchronized asm {
-          mov RAX, ident;
-          mov RDI, n[RBP];
-          mov RSI, arg1[RBP];
-          mov RDX, arg2[RBP];
-          mov R10, arg3[RBP];
-          mov R8, arg4[RBP];
-          mov R9, arg5[RBP];
-          syscall;
-          mov ret, RAX;
-        }
-      return ret;
-    }
+  }
+  else version(OSX)
+  {
+    immutable ulong SYSCALL                         = 0;
+    immutable ulong EXIT                            = 1;
+    immutable ulong FORK                            = 2;
+    immutable ulong READ                            = 3;
+    immutable ulong WRITE                           = 4;
+    immutable ulong OPEN                            = 5;
+    immutable ulong CLOSE                           = 6;
+    immutable ulong WAIT4                           = 7;
+    immutable ulong LINK                            = 9;
+    immutable ulong UNLINK                          = 10;
+    immutable ulong CHDIR                           = 12;
+    immutable ulong FCHDIR                          = 13;
+    immutable ulong MKNOD                           = 14;
+    immutable ulong CHMOD                           = 15;
+    immutable ulong CHOWN                           = 16;
+    immutable ulong GETFSSTAT                       = 18;
+    immutable ulong GETPID                          = 20;
+    immutable ulong SETUID                          = 23;
+    immutable ulong GETUID                          = 24;
+    immutable ulong GETEUID                         = 25;
+    immutable ulong PTRACE                          = 26;
+    immutable ulong RECVMSG                         = 27;
+    immutable ulong SENDMSG                         = 28;
+    immutable ulong RECVFROM                        = 29;
+    immutable ulong ACCEPT                          = 30;
+    immutable ulong GETPEERNAME                     = 31;
+    immutable ulong GETSOCKNAME                     = 32;
+    immutable ulong ACCESS                          = 33;
+    immutable ulong CHFLAGS                         = 34;
+    immutable ulong FCHFLAGS                        = 35;
+    immutable ulong SYNC                            = 36;
+    immutable ulong KILL                            = 37;
+    immutable ulong GETPPID                         = 39;
+    immutable ulong DUP                             = 41;
+    immutable ulong PIPE                            = 42;
+    immutable ulong GETEGID                         = 43;
+    immutable ulong PROFIL                          = 44;
+    immutable ulong SIGACTION                       = 46;
+    immutable ulong GETGID                          = 47;
+    immutable ulong SIGPROCMASK                     = 48;
+    immutable ulong GETLOGIN                        = 49;
+    immutable ulong SETLOGIN                        = 50;
+    immutable ulong ACCT                            = 51;
+    immutable ulong SIGPENDING                      = 52;
+    immutable ulong SIGALTSTACK                     = 53;
+    immutable ulong IOCTL                           = 54;
+    immutable ulong REBOOT                          = 55;
+    immutable ulong REVOKE                          = 56;
+    immutable ulong SYMLINK                         = 57;
+    immutable ulong READLINK                        = 58;
+    immutable ulong EXECVE                          = 59;
+    immutable ulong UMASK                           = 60;
+    immutable ulong CHROOT                          = 61;
+    immutable ulong MSYNC                           = 65;
+    immutable ulong VFORK                           = 66;
+    immutable ulong MUNMAP                          = 73;
+    immutable ulong MPROTECT                        = 74;
+    immutable ulong MADVISE                         = 75;
+    immutable ulong MINCORE                         = 78;
+    immutable ulong GETGROUPS                       = 79;
+    immutable ulong SETGROUPS                       = 80;
+    immutable ulong GETPGRP                         = 81;
+    immutable ulong SETPGID                         = 82;
+    immutable ulong SETITIMER                       = 83;
+    immutable ulong SWAPON                          = 85;
+    immutable ulong GETITIMER                       = 86;
+    immutable ulong GETDTABLESIZE                   = 89;
+    immutable ulong DUP2                            = 90;
+    immutable ulong FCNTL                           = 92;
+    immutable ulong SELECT                          = 93;
+    immutable ulong FSYNC                           = 95;
+    immutable ulong SETPRIORITY                     = 96;
+    immutable ulong SOCKET                          = 97;
+    immutable ulong CONNECT                         = 98;
+    immutable ulong GETPRIORITY                     = 100;
+    immutable ulong BIND                            = 104;
+    immutable ulong SETSOCKOPT                      = 105;
+    immutable ulong LISTEN                          = 106;
+    immutable ulong SIGSUSPEND                      = 111;
+    immutable ulong GETTIMEOFDAY                    = 116;
+    immutable ulong GETRUSAGE                       = 117;
+    immutable ulong GETSOCKOPT                      = 118;
+    immutable ulong READV                           = 120;
+    immutable ulong WRITEV                          = 121;
+    immutable ulong SETTIMEOFDAY                    = 122;
+    immutable ulong FCHOWN                          = 123;
+    immutable ulong FCHMOD                          = 124;
+    immutable ulong SETREUID                        = 126;
+    immutable ulong SETREGID                        = 127;
+    immutable ulong RENAME                          = 128;
+    immutable ulong FLOCK                           = 131;
+    immutable ulong MKFIFO                          = 132;
+    immutable ulong SENDTO                          = 133;
+    immutable ulong SHUTDOWN                        = 134;
+    immutable ulong SOCKETPAIR                      = 135;
+    immutable ulong MKDIR                           = 136;
+    immutable ulong RMDIR                           = 137;
+    immutable ulong UTIMES                          = 138;
+    immutable ulong FUTIMES                         = 139;
+    immutable ulong ADJTIME                         = 140;
+    immutable ulong GETHOSTUUID                     = 142;
+    immutable ulong SETSID                          = 147;
+    immutable ulong GETPGID                         = 151;
+    immutable ulong SETPRIVEXEC                     = 152;
+    immutable ulong PREAD                           = 153;
+    immutable ulong PWRITE                          = 154;
+    immutable ulong NFSSVC                          = 155;
+    immutable ulong STATFS                          = 157;
+    immutable ulong FSTATFS                         = 158;
+    immutable ulong UNMOUNT                         = 159;
+    immutable ulong GETFH                           = 161;
+    immutable ulong QUOTACTL                        = 165;
+    immutable ulong MOUNT                           = 167;
+    immutable ulong CSOPS                           = 169;
+    immutable ulong WAITID                          = 173;
+    immutable ulong ADD_PROFIL                      = 176;
+    immutable ulong KDEBUG_TRACE                    = 180;
+    immutable ulong SETGID                          = 181;
+    immutable ulong SETEGID                         = 182;
+    immutable ulong SETEUID                         = 183;
+    immutable ulong SIGRETURN                       = 184;
+    immutable ulong CHUD                            = 185;
+    immutable ulong FDATASYNC                       = 187;
+    immutable ulong STAT                            = 188;
+    immutable ulong FSTAT                           = 189;
+    immutable ulong LSTAT                           = 190;
+    immutable ulong PATHCONF                        = 191;
+    immutable ulong FPATHCONF                       = 192;
+    immutable ulong GETRLIMIT                       = 194;
+    immutable ulong SETRLIMIT                       = 195;
+    immutable ulong GETDIRENTRIES                   = 196;
+    immutable ulong MMAP                            = 197;
+    immutable ulong LSEEK                           = 199;
+    immutable ulong TRUNCATE                        = 200;
+    immutable ulong FTRUNCATE                       = 201;
+    immutable ulong __SYSCTL                        = 202;
+    immutable ulong MLOCK                           = 203;
+    immutable ulong MUNLOCK                         = 204;
+    immutable ulong UNDELETE                        = 205;
+    immutable ulong ATSOCKET                        = 206;
+    immutable ulong ATGETMSG                        = 207;
+    immutable ulong ATPUTMSG                        = 208;
+    immutable ulong ATPSNDREQ                       = 209;
+    immutable ulong ATPSNDRSP                       = 210;
+    immutable ulong ATPGETREQ                       = 211;
+    immutable ulong ATPGETRSP                       = 212;
+    immutable ulong MKCOMPLEX                       = 216;
+    immutable ulong STATV                           = 217;
+    immutable ulong LSTATV                          = 218;
+    immutable ulong FSTATV                          = 219;
+    immutable ulong GETATTRLIST                     = 220;
+    immutable ulong SETATTRLIST                     = 221;
+    immutable ulong GETDIRENTRIESATTR               = 222;
+    immutable ulong EXCHANGEDATA                    = 223;
+    immutable ulong SEARCHFS                        = 225;
+    immutable ulong DELETE                          = 226;
+    immutable ulong COPYFILE                        = 227;
+    immutable ulong FGETATTRLIST                    = 228;
+    immutable ulong FSETATTRLIST                    = 229;
+    immutable ulong POLL                            = 230;
+    immutable ulong WATCHEVENT                      = 231;
+    immutable ulong WAITEVENT                       = 232;
+    immutable ulong MODWATCH                        = 233;
+    immutable ulong GETXATTR                        = 234;
+    immutable ulong FGETXATTR                       = 235;
+    immutable ulong SETXATTR                        = 236;
+    immutable ulong FSETXATTR                       = 237;
+    immutable ulong REMOVEXATTR                     = 238;
+    immutable ulong FREMOVEXATTR                    = 239;
+    immutable ulong LISTXATTR                       = 240;
+    immutable ulong FLISTXATTR                      = 241;
+    immutable ulong FSCTL                           = 242;
+    immutable ulong INITGROUPS                      = 243;
+    immutable ulong POSIX_SPAWN                     = 244;
+    immutable ulong FFSCTL                          = 245;
+    immutable ulong NFSCLNT                         = 247;
+    immutable ulong FHOPEN                          = 248;
+    immutable ulong MINHERIT                        = 250;
+    immutable ulong SEMSYS                          = 251;
+    immutable ulong MSGSYS                          = 252;
+    immutable ulong SHMSYS                          = 253;
+    immutable ulong SEMCTL                          = 254;
+    immutable ulong SEMGET                          = 255;
+    immutable ulong SEMOP                           = 256;
+    immutable ulong MSGCTL                          = 258;
+    immutable ulong MSGGET                          = 259;
+    immutable ulong MSGSND                          = 260;
+    immutable ulong MSGRCV                          = 261;
+    immutable ulong SHMAT                           = 262;
+    immutable ulong SHMCTL                          = 263;
+    immutable ulong SHMDT                           = 264;
+    immutable ulong SHMGET                          = 265;
+    immutable ulong SHM_OPEN                        = 266;
+    immutable ulong SHM_UNLINK                      = 267;
+    immutable ulong SEM_OPEN                        = 268;
+    immutable ulong SEM_CLOSE                       = 269;
+    immutable ulong SEM_UNLINK                      = 270;
+    immutable ulong SEM_WAIT                        = 271;
+    immutable ulong SEM_TRYWAIT                     = 272;
+    immutable ulong SEM_POST                        = 273;
+    immutable ulong SEM_GETVALUE                    = 274;
+    immutable ulong SEM_INIT                        = 275;
+    immutable ulong SEM_DESTROY                     = 276;
+    immutable ulong OPEN_EXTENDED                   = 277;
+    immutable ulong UMASK_EXTENDED                  = 278;
+    immutable ulong STAT_EXTENDED                   = 279;
+    immutable ulong LSTAT_EXTENDED                  = 280;
+    immutable ulong FSTAT_EXTENDED                  = 281;
+    immutable ulong CHMOD_EXTENDED                  = 282;
+    immutable ulong FCHMOD_EXTENDED                 = 283;
+    immutable ulong ACCESS_EXTENDED                 = 284;
+    immutable ulong SETTID                          = 285;
+    immutable ulong GETTID                          = 286;
+    immutable ulong SETSGROUPS                      = 287;
+    immutable ulong GETSGROUPS                      = 288;
+    immutable ulong SETWGROUPS                      = 289;
+    immutable ulong GETWGROUPS                      = 290;
+    immutable ulong MKFIFO_EXTENDED                 = 291;
+    immutable ulong MKDIR_EXTENDED                  = 292;
+    immutable ulong IDENTITYSVC                     = 293;
+    immutable ulong SHARED_REGION_CHECK_NP          = 294;
+    immutable ulong VM_PRESSURE_MONITOR             = 296;
+    immutable ulong PSYNCH_RW_LONGRDLOCK            = 297;
+    immutable ulong PSYNCH_RW_YIELDWRLOCK           = 298;
+    immutable ulong PSYNCH_RW_DOWNGRADE             = 299;
+    immutable ulong PSYNCH_RW_UPGRADE               = 300;
+    immutable ulong PSYNCH_MUTEXWAIT                = 301;
+    immutable ulong PSYNCH_MUTEXDROP                = 302;
+    immutable ulong PSYNCH_CVBROAD                  = 303;
+    immutable ulong PSYNCH_CVSIGNAL                 = 304;
+    immutable ulong PSYNCH_CVWAIT                   = 305;
+    immutable ulong PSYNCH_RW_RDLOCK                = 306;
+    immutable ulong PSYNCH_RW_WRLOCK                = 307;
+    immutable ulong PSYNCH_RW_UNLOCK                = 308;
+    immutable ulong PSYNCH_RW_UNLOCK2               = 309;
+    immutable ulong GETSID                          = 310;
+    immutable ulong SETTID_WITH_PID                 = 311;
+    immutable ulong PSYNCH_CVCLRPREPOST             = 312;
+    immutable ulong AIO_FSYNC                       = 313;
+    immutable ulong AIO_RETURN                      = 314;
+    immutable ulong AIO_SUSPEND                     = 315;
+    immutable ulong AIO_CANCEL                      = 316;
+    immutable ulong AIO_ERROR                       = 317;
+    immutable ulong AIO_READ                        = 318;
+    immutable ulong AIO_WRITE                       = 319;
+    immutable ulong LIO_LISTIO                      = 320;
+    immutable ulong IOPOLICYSYS                     = 322;
+    immutable ulong PROCESS_POLICY                  = 323;
+    immutable ulong MLOCKALL                        = 324;
+    immutable ulong MUNLOCKALL                      = 325;
+    immutable ulong ISSETUGID                       = 327;
+    immutable ulong __PTHREAD_KILL                  = 328;
+    immutable ulong __PTHREAD_SIGMASK               = 329;
+    immutable ulong __SIGWAIT                       = 330;
+    immutable ulong __DISABLE_THREADSIGNAL          = 331;
+    immutable ulong __PTHREAD_MARKCANCEL            = 332;
+    immutable ulong __PTHREAD_CANCELED              = 333;
+    immutable ulong __SEMWAIT_SIGNAL                = 334;
+    immutable ulong PROC_INFO                       = 336;
+    immutable ulong SENDFILE                        = 337;
+    immutable ulong STAT64                          = 338;
+    immutable ulong FSTAT64                         = 339;
+    immutable ulong LSTAT64                         = 340;
+    immutable ulong STAT64_EXTENDED                 = 341;
+    immutable ulong LSTAT64_EXTENDED                = 342;
+    immutable ulong FSTAT64_EXTENDED                = 343;
+    immutable ulong GETDIRENTRIES64                 = 344;
+    immutable ulong STATFS64                        = 345;
+    immutable ulong FSTATFS64                       = 346;
+    immutable ulong GETFSSTAT64                     = 347;
+    immutable ulong __PTHREAD_CHDIR                 = 348;
+    immutable ulong __PTHREAD_FCHDIR                = 349;
+    immutable ulong AUDIT                           = 350;
+    immutable ulong AUDITON                         = 351;
+    immutable ulong GETAUID                         = 353;
+    immutable ulong SETAUID                         = 354;
+    immutable ulong GETAUDIT                        = 355;
+    immutable ulong SETAUDIT                        = 356;
+    immutable ulong GETAUDIT_ADDR                   = 357;
+    immutable ulong SETAUDIT_ADDR                   = 358;
+    immutable ulong AUDITCTL                        = 359;
+    immutable ulong BSDTHREAD_CREATE                = 360;
+    immutable ulong BSDTHREAD_TERMINATE             = 361;
+    immutable ulong KQUEUE                          = 362;
+    immutable ulong KEVENT                          = 363;
+    immutable ulong LCHOWN                          = 364;
+    immutable ulong STACK_SNAPSHOT                  = 365;
+    immutable ulong BSDTHREAD_REGISTER              = 366;
+    immutable ulong WORKQ_OPEN                      = 367;
+    immutable ulong WORKQ_KERNRETURN                = 368;
+    immutable ulong KEVENT64                        = 369;
+    immutable ulong __OLD_SEMWAIT_SIGNAL            = 370;
+    immutable ulong __OLD_SEMWAIT_SIGNAL_NOCANCEL   = 371;
+    immutable ulong THREAD_SELFID                   = 372;
+    immutable ulong __MAC_EXECVE                    = 380;
+    immutable ulong __MAC_SYSCALL                   = 381;
+    immutable ulong __MAC_GET_FILE                  = 382;
+    immutable ulong __MAC_SET_FILE                  = 383;
+    immutable ulong __MAC_GET_LINK                  = 384;
+    immutable ulong __MAC_SET_LINK                  = 385;
+    immutable ulong __MAC_GET_PROC                  = 386;
+    immutable ulong __MAC_SET_PROC                  = 387;
+    immutable ulong __MAC_GET_FD                    = 388;
+    immutable ulong __MAC_SET_FD                    = 389;
+    immutable ulong __MAC_GET_PID                   = 390;
+    immutable ulong __MAC_GET_LCID                  = 391;
+    immutable ulong __MAC_GET_LCTX                  = 392;
+    immutable ulong __MAC_SET_LCTX                  = 393;
+    immutable ulong SETLCID                         = 394;
+    immutable ulong GETLCID                         = 395;
+    immutable ulong READ_NOCANCEL                   = 396;
+    immutable ulong WRITE_NOCANCEL                  = 397;
+    immutable ulong OPEN_NOCANCEL                   = 398;
+    immutable ulong CLOSE_NOCANCEL                  = 399;
+    immutable ulong WAIT4_NOCANCEL                  = 400;
+    immutable ulong RECVMSG_NOCANCEL                = 401;
+    immutable ulong SENDMSG_NOCANCEL                = 402;
+    immutable ulong RECVFROM_NOCANCEL               = 403;
+    immutable ulong ACCEPT_NOCANCEL                 = 404;
+    immutable ulong MSYNC_NOCANCEL                  = 405;
+    immutable ulong FCNTL_NOCANCEL                  = 406;
+    immutable ulong SELECT_NOCANCEL                 = 407;
+    immutable ulong FSYNC_NOCANCEL                  = 408;
+    immutable ulong CONNECT_NOCANCEL                = 409;
+    immutable ulong SIGSUSPEND_NOCANCEL             = 410;
+    immutable ulong READV_NOCANCEL                  = 411;
+    immutable ulong WRITEV_NOCANCEL                 = 412;
+    immutable ulong SENDTO_NOCANCEL                 = 413;
+    immutable ulong PREAD_NOCANCEL                  = 414;
+    immutable ulong PWRITE_NOCANCEL                 = 415;
+    immutable ulong WAITID_NOCANCEL                 = 416;
+    immutable ulong POLL_NOCANCEL                   = 417;
+    immutable ulong MSGSND_NOCANCEL                 = 418;
+    immutable ulong MSGRCV_NOCANCEL                 = 419;
+    immutable ulong SEM_WAIT_NOCANCEL               = 420;
+    immutable ulong AIO_SUSPEND_NOCANCEL            = 421;
+    immutable ulong __SIGWAIT_NOCANCEL              = 422;
+    immutable ulong __SEMWAIT_SIGNAL_NOCANCEL       = 423;
+    immutable ulong __MAC_MOUNT                     = 424;
+    immutable ulong __MAC_GET_MOUNT                 = 425;
+    immutable ulong __MAC_GETFSSTAT                 = 426;
+    immutable ulong FSGETPATH                       = 427;
+    immutable ulong AUDIT_SESSION_SELF              = 428;
+    immutable ulong AUDIT_SESSION_JOIN              = 429;
+    immutable ulong FILEPORT_MAKEPORT               = 430;
+    immutable ulong FILEPORT_MAKEFD                 = 431;
+    immutable ulong AUDIT_SESSION_PORT              = 432;
+    immutable ulong PID_SUSPEND                     = 433;
+    immutable ulong PID_RESUME                      = 434;
+    immutable ulong PID_HIBERNATE                   = 435;
+    immutable ulong PID_SHUTDOWN_SOCKETS            = 436;
+    immutable ulong SHARED_REGION_MAP_AND_SLIDE_NP  = 438;
+    immutable ulong MAXSYSCALL                      = 439;
   }
   else static assert(false, "Not supoorted your platform/architecuture.");
-}
-else static assert(false, "Not supoorted your platform/architecuture.");
+
+  ulong syscall(ulong ident)
+  {
+    ulong ret;
+
+    synchronized asm {
+        mov RAX, ident;
+        syscall;
+        mov ret, RAX;
+      }
+    return ret;
+  }
+
+  ulong syscall(ulong ident, ulong n)
+  {
+    ulong ret;
+
+    synchronized asm {
+        mov RAX, ident;
+        mov RDI, n[RBP];
+        syscall;
+        mov ret, RAX;
+      }
+    return ret;
+  }
+
+  ulong syscall(ulong ident, ulong n, ulong arg1)
+  {
+    ulong ret;
+
+    synchronized asm {
+        mov RAX, ident;
+        mov RDI, n[RBP];
+        mov RSI, arg1[RBP];
+        syscall;
+        mov ret, RAX;
+      }
+    return ret;
+  }
+
+  ulong syscall(ulong ident, ulong n, ulong arg1, ulong arg2)
+  {
+    ulong ret;
+
+    synchronized asm {
+        mov RAX, ident;
+        mov RDI, n[RBP];
+        mov RSI, arg1[RBP];
+        mov RDX, arg2[RBP];
+        syscall;
+        mov ret, RAX;
+      }
+    return ret;
+  }
+
+  ulong syscall(ulong ident, ulong n, ulong arg1, ulong arg2, ulong arg3)
+  {
+    ulong ret;
+
+    synchronized asm {
+        mov RAX, ident;
+        mov RDI, n[RBP];
+        mov RSI, arg1[RBP];
+        mov RDX, arg2[RBP];
+        mov R10, arg3[RBP];
+        syscall;
+        mov ret, RAX;
+      }
+    return ret;
+  }
+
+  ulong syscall(ulong ident, ulong n, ulong arg1, ulong arg2, ulong arg3, ulong arg4)
+  {
+    ulong ret;
+
+    synchronized asm {
+        mov RAX, ident;
+        mov RDI, n[RBP];
+        mov RSI, arg1[RBP];
+        mov RDX, arg2[RBP];
+        mov R10, arg3[RBP];
+        mov R8, arg4[RBP];
+        syscall;
+        mov ret, RAX;
+      }
+    return ret;
+  }
+
+  ulong syscall(ulong ident, ulong n, ulong arg1, ulong arg2, ulong arg3, ulong arg4, ulong arg5)
+  {
+    ulong ret;
+
+    synchronized asm {
+        mov RAX, ident;
+        mov RDI, n[RBP];
+        mov RSI, arg1[RBP];
+        mov RDX, arg2[RBP];
+        mov R10, arg3[RBP];
+        mov R8, arg4[RBP];
+        mov R9, arg5[RBP];
+        syscall;
+        mov ret, RAX;
+      }
+    return ret;
+  }
+} else static assert(false, "Not supoorted your platform/architecuture.");
 
 
 unittest
