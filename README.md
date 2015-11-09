@@ -14,7 +14,7 @@ Raw syscall interface for D.
 
 ```
 $ cd syscall.d
-$ dub build
+$ dub build --build=release
 ```
 
 ## Example
