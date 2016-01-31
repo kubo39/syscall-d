@@ -1,5 +1,5 @@
 {
-    "name": "syscall.d",
+    "name": "syscall-d",
     "description": "syscall interface for D",
     "license": "MIT",
     "authors": ["kubo39"],

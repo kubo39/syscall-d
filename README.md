@@ -1,4 +1,4 @@
-# syscall.d [![Build Status](https://secure.travis-ci.org/kubo39/syscall.d.png?branch=master)](http://travis-ci.org/kubo39/syscall.d)
+# syscall-d [![Build Status](https://secure.travis-ci.org/kubo39/syscall-d.png?branch=master)](http://travis-ci.org/kubo39/syscall-d)
 
 Raw syscall interface for D.
 

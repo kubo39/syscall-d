@@ -2,7 +2,7 @@
     "name": "hello",
     "description": "syscall write example.",
     "dependencies": {
-        "syscall.d": {"version": "~master", "path": "../"}
+        "syscall-d": {"version": "~master", "path": "../"}
     },
     "buildTypes": {
         "smallbin": {
