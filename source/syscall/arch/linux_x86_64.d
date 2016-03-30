@@ -1,5 +1,7 @@
 module syscall.arch.linux_x86_64;
 
+
+//  kernel version: 3.10.0-229.14.1.el7.x86_64
 version(linux):
 
 enum READ = 0;
