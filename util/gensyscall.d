@@ -28,6 +28,9 @@ void genSyscall()
 version(OSX)
 void genSyscall()
 {
+  writeln("module syscall.arch.osx_x86_64;\n");
+  writeln("version(OSX):\n");
+
   executeShell("printf '#include<sys/syscall.h>' | cpp -dM - | grep 'SYS_'")
     .output.split("\n").map!(a => a.split(" "))
     .filter!(a => a.length >= 2 && a[2].isNumeric)
