@@ -1,5 +1,6 @@
 module syscall.arch.osx_x86_64;
 
+//  kernel version: 13.4.0
 version(OSX):
 
 enum SYSCALL = 0;

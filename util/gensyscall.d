@@ -14,7 +14,9 @@ struct NR
 version(linux)
 void genSyscall()
 {
-  writeln("module syscall.arch.linux_x86_64;\n");
+  writeln("module syscall.arch.linux_x86_64;\n\n");
+  write("//  kernel version: ");
+  write(executeShell("uname -r").output);
   writeln("version(linux):\n");
 
   executeShell("printf '#include<sys/syscall.h>' | cpp -dM - | grep '__NR_'")
@@ -29,6 +31,8 @@ version(OSX)
 void genSyscall()
 {
   writeln("module syscall.arch.osx_x86_64;\n");
+  write("//  kernel version: ");
+  write(executeShell("uname -r").output);
   writeln("version(OSX):\n");
 
   executeShell("printf '#include<sys/syscall.h>' | cpp -dM - | grep 'SYS_'")
