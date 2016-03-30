@@ -1,10 +1,8 @@
-# syscall-d [![Build Status](https://secure.travis-ci.org/kubo39/syscall-d.png?branch=master)](http://travis-ci.org/kubo39/syscall-d)
+# syscall-d [![Build Status](https://secure.travis-ci.org/kubo39/syscall-d.svg?branch=master)](http://travis-ci.org/kubo39/syscall-d)
 
 Raw syscall interface for D.
 
 ## Prerequirements
-
-* DMD D Compiler >= 2.067.0
 
 * Linux/OSX with x86_64 arch support only
 
