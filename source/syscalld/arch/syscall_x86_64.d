@@ -1,6 +1,6 @@
-module syscall.arch.syscall_x86_64;
+module syscalld.arch.syscall_x86_64;
 
-ulong syscall0(ulong ident)
+ulong syscall(ulong ident)
 {
   ulong ret;
 
@@ -13,7 +13,7 @@ ulong syscall0(ulong ident)
   return ret;
 }
 
-ulong syscall1(ulong ident, ulong n)
+ulong syscall(ulong ident, ulong n)
 {
   ulong ret;
 
@@ -27,7 +27,7 @@ ulong syscall1(ulong ident, ulong n)
   return ret;
 }
 
-ulong syscall2(ulong ident, ulong n, ulong arg1)
+ulong syscall(ulong ident, ulong n, ulong arg1)
 {
   ulong ret;
 
@@ -42,7 +42,7 @@ ulong syscall2(ulong ident, ulong n, ulong arg1)
   return ret;
 }
 
-ulong syscall3(ulong ident, ulong n, ulong arg1, ulong arg2)
+ulong syscall(ulong ident, ulong n, ulong arg1, ulong arg2)
 {
   ulong ret;
 
@@ -58,7 +58,7 @@ ulong syscall3(ulong ident, ulong n, ulong arg1, ulong arg2)
   return ret;
 }
 
-ulong syscall4(ulong ident, ulong n, ulong arg1, ulong arg2, ulong arg3)
+ulong syscall(ulong ident, ulong n, ulong arg1, ulong arg2, ulong arg3)
 {
   ulong ret;
 
@@ -75,7 +75,7 @@ ulong syscall4(ulong ident, ulong n, ulong arg1, ulong arg2, ulong arg3)
   return ret;
 }
 
-ulong syscall5(ulong ident, ulong n, ulong arg1, ulong arg2, ulong arg3, ulong arg4)
+ulong syscall(ulong ident, ulong n, ulong arg1, ulong arg2, ulong arg3, ulong arg4)
 {
   ulong ret;
 
@@ -93,7 +93,7 @@ ulong syscall5(ulong ident, ulong n, ulong arg1, ulong arg2, ulong arg3, ulong a
   return ret;
 }
 
-ulong syscall6(ulong ident, ulong n, ulong arg1, ulong arg2, ulong arg3, ulong arg4, ulong arg5)
+ulong syscall(ulong ident, ulong n, ulong arg1, ulong arg2, ulong arg3, ulong arg4, ulong arg5)
 {
   ulong ret;
 

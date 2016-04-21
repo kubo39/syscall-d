@@ -9,18 +9,18 @@ Raw syscall interface for D.
 ## Build
 
 ```
-$ cd syscall.d
+$ cd syscall-d
 $ dub build --build=release
 ```
 
 ## Example
 
 ```d
-import syscall : syscall3, WRITE;
+import syscalld : syscall, WRITE;
 
 ulong write(ulong fd, string buf)
 {
-  return syscall3(WRITE, fd, cast(ulong) buf.ptr, cast(ulong) buf.length);
+  return syscall(WRITE, fd, cast(ulong) buf.ptr, cast(ulong) buf.length);
 }
 
 void main()
