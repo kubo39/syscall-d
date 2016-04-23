@@ -2,112 +2,112 @@ module syscalld.arch.syscall_x86_64;
 
 ulong syscall(ulong ident)
 {
-  ulong ret;
+    ulong ret;
 
-  synchronized asm
-  {
-    mov RAX, ident;
-    syscall;
-    mov ret, RAX;
-  }
-  return ret;
+    synchronized asm
+    {
+        mov RAX, ident;
+        syscall;
+        mov ret, RAX;
+    }
+    return ret;
 }
 
 ulong syscall(ulong ident, ulong n)
 {
-  ulong ret;
+    ulong ret;
 
-  synchronized asm
-  {
-    mov RAX, ident;
-    mov RDI, n[RBP];
-    syscall;
-    mov ret, RAX;
-  }
-  return ret;
+    synchronized asm
+    {
+        mov RAX, ident;
+        mov RDI, n[RBP];
+        syscall;
+        mov ret, RAX;
+    }
+    return ret;
 }
 
 ulong syscall(ulong ident, ulong n, ulong arg1)
 {
-  ulong ret;
+    ulong ret;
 
-  synchronized asm
-  {
-    mov RAX, ident;
-    mov RDI, n[RBP];
-    mov RSI, arg1[RBP];
-    syscall;
-    mov ret, RAX;
-  }
-  return ret;
+    synchronized asm
+    {
+        mov RAX, ident;
+        mov RDI, n[RBP];
+        mov RSI, arg1[RBP];
+        syscall;
+        mov ret, RAX;
+    }
+    return ret;
 }
 
 ulong syscall(ulong ident, ulong n, ulong arg1, ulong arg2)
 {
-  ulong ret;
+    ulong ret;
 
-  synchronized asm
-  {
-    mov RAX, ident;
-    mov RDI, n[RBP];
-    mov RSI, arg1[RBP];
-    mov RDX, arg2[RBP];
-    syscall;
-    mov ret, RAX;
-  }
-  return ret;
+    synchronized asm
+    {
+        mov RAX, ident;
+        mov RDI, n[RBP];
+        mov RSI, arg1[RBP];
+        mov RDX, arg2[RBP];
+        syscall;
+        mov ret, RAX;
+    }
+    return ret;
 }
 
 ulong syscall(ulong ident, ulong n, ulong arg1, ulong arg2, ulong arg3)
 {
-  ulong ret;
+    ulong ret;
 
-  synchronized asm
-  {
-    mov RAX, ident;
-    mov RDI, n[RBP];
-    mov RSI, arg1[RBP];
-    mov RDX, arg2[RBP];
-    mov R10, arg3[RBP];
-    syscall;
-    mov ret, RAX;
-  }
-  return ret;
+    synchronized asm
+    {
+        mov RAX, ident;
+        mov RDI, n[RBP];
+        mov RSI, arg1[RBP];
+        mov RDX, arg2[RBP];
+        mov R10, arg3[RBP];
+        syscall;
+        mov ret, RAX;
+    }
+    return ret;
 }
 
 ulong syscall(ulong ident, ulong n, ulong arg1, ulong arg2, ulong arg3, ulong arg4)
 {
-  ulong ret;
+    ulong ret;
 
-  synchronized asm
-  {
-    mov RAX, ident;
-    mov RDI, n[RBP];
-    mov RSI, arg1[RBP];
-    mov RDX, arg2[RBP];
-    mov R10, arg3[RBP];
-    mov R8, arg4[RBP];
-    syscall;
-    mov ret, RAX;
-  }
-  return ret;
+    synchronized asm
+    {
+        mov RAX, ident;
+        mov RDI, n[RBP];
+        mov RSI, arg1[RBP];
+        mov RDX, arg2[RBP];
+        mov R10, arg3[RBP];
+        mov R8, arg4[RBP];
+        syscall;
+        mov ret, RAX;
+    }
+    return ret;
 }
 
 ulong syscall(ulong ident, ulong n, ulong arg1, ulong arg2, ulong arg3, ulong arg4, ulong arg5)
 {
-  ulong ret;
+    ulong ret;
 
-  synchronized asm
-  {
-    mov RAX, ident;
-    mov RDI, n[RBP];
-    mov RSI, arg1[RBP];
-    mov RDX, arg2[RBP];
-    mov R10, arg3[RBP];
-    mov R8, arg4[RBP];
-    mov R9, arg5[RBP];
-    syscall;
-    mov ret, RAX;
-  }
-  return ret;
+    synchronized asm
+    {
+        mov RAX, ident;
+        mov RDI, n[RBP];
+        mov RSI, arg1[RBP];
+        mov RDX, arg2[RBP];
+        mov R10, arg3[RBP];
+        mov R8, arg4[RBP];
+        mov R9, arg5[RBP];
+        syscall;
+        mov ret, RAX;
+    }
+    return ret;
 }
