@@ -14,4 +14,4 @@ else
     exit 1
 fi
 
-rdmd util/gensyscall.d > source/syscalld/arch/${OS}_x86_64.d
+rdmd -defaultlib=libphobos2.so -fPIC util/gensyscall.d > source/syscalld/arch/${OS}_x86_64.d
