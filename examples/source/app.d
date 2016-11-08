@@ -1,12 +1,12 @@
 import syscalld : syscall, WRITE;
 
-ulong write(ulong fd, string buf)
+size_t write(size_t fd, string buf)
 {
-    return syscall(WRITE, fd, cast(ulong) buf.ptr, cast(ulong) buf.length);
+    return syscall(WRITE, fd, cast(size_t) buf.ptr, cast(size_t) buf.length);
 }
 
 void main()
 {
-    ulong stdout = 1;
+    size_t stdout = 1;
     write(stdout, "Hello\n");
 }

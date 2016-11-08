@@ -1,8 +1,10 @@
 module syscalld.arch.syscall_x86_64;
 
-ulong syscall(ulong ident)
+version(D_InlineAsm_X86_64):
+
+size_t syscall(size_t ident)
 {
-    ulong ret;
+    size_t ret;
 
     synchronized asm
     {
@@ -13,9 +15,9 @@ ulong syscall(ulong ident)
     return ret;
 }
 
-ulong syscall(ulong ident, ulong n)
+size_t syscall(size_t ident, size_t n)
 {
-    ulong ret;
+    size_t ret;
 
     synchronized asm
     {
@@ -27,9 +29,9 @@ ulong syscall(ulong ident, ulong n)
     return ret;
 }
 
-ulong syscall(ulong ident, ulong n, ulong arg1)
+size_t syscall(size_t ident, size_t n, size_t arg1)
 {
-    ulong ret;
+    size_t ret;
 
     synchronized asm
     {
@@ -42,9 +44,9 @@ ulong syscall(ulong ident, ulong n, ulong arg1)
     return ret;
 }
 
-ulong syscall(ulong ident, ulong n, ulong arg1, ulong arg2)
+size_t syscall(size_t ident, size_t n, size_t arg1, size_t arg2)
 {
-    ulong ret;
+    size_t ret;
 
     synchronized asm
     {
@@ -58,9 +60,9 @@ ulong syscall(ulong ident, ulong n, ulong arg1, ulong arg2)
     return ret;
 }
 
-ulong syscall(ulong ident, ulong n, ulong arg1, ulong arg2, ulong arg3)
+size_t syscall(size_t ident, size_t n, size_t arg1, size_t arg2, size_t arg3)
 {
-    ulong ret;
+    size_t ret;
 
     synchronized asm
     {
@@ -75,9 +77,9 @@ ulong syscall(ulong ident, ulong n, ulong arg1, ulong arg2, ulong arg3)
     return ret;
 }
 
-ulong syscall(ulong ident, ulong n, ulong arg1, ulong arg2, ulong arg3, ulong arg4)
+size_t syscall(size_t ident, size_t n, size_t arg1, size_t arg2, size_t arg3, size_t arg4)
 {
-    ulong ret;
+    size_t ret;
 
     synchronized asm
     {
@@ -93,9 +95,9 @@ ulong syscall(ulong ident, ulong n, ulong arg1, ulong arg2, ulong arg3, ulong ar
     return ret;
 }
 
-ulong syscall(ulong ident, ulong n, ulong arg1, ulong arg2, ulong arg3, ulong arg4, ulong arg5)
+size_t syscall(size_t ident, size_t n, size_t arg1, size_t arg2, size_t arg3, size_t arg4, size_t arg5)
 {
-    ulong ret;
+    size_t ret;
 
     synchronized asm
     {
