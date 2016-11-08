@@ -1,8 +1,8 @@
 module syscalld.arch.syscall_x86;
 
-size_t syscall(size_t ident)
+int syscall(int ident)
 {
-    size_t ret;
+    int ret;
 
     synchronized asm
     {
@@ -13,9 +13,9 @@ size_t syscall(size_t ident)
     return ret;
 }
 
-size_t syscall(size_t ident, size_t n)
+int syscall(int ident, int n)
 {
-    size_t ret;
+    int ret;
 
     synchronized asm
     {
@@ -27,9 +27,9 @@ size_t syscall(size_t ident, size_t n)
     return ret;
 }
 
-size_t syscall(size_t ident, size_t n, size_t arg1)
+int syscall(int ident, int n, int arg1)
 {
-    size_t ret;
+    int ret;
 
     synchronized asm
     {
@@ -42,9 +42,9 @@ size_t syscall(size_t ident, size_t n, size_t arg1)
     return ret;
 }
 
-size_t syscall(size_t ident, size_t n, size_t arg1, size_t arg2)
+int syscall(int ident, int n, int arg1, int arg2)
 {
-    size_t ret;
+    int ret;
 
     synchronized asm
     {
@@ -58,9 +58,9 @@ size_t syscall(size_t ident, size_t n, size_t arg1, size_t arg2)
     return ret;
 }
 
-size_t syscall(size_t ident, size_t n, size_t arg1, size_t arg2, size_t arg3)
+int syscall(int ident, int n, int arg1, int arg2, int arg3)
 {
-    size_t ret;
+    int ret;
 
     synchronized asm
     {
@@ -75,9 +75,9 @@ size_t syscall(size_t ident, size_t n, size_t arg1, size_t arg2, size_t arg3)
     return ret;
 }
 
-size_t syscall(size_t ident, size_t n, size_t arg1, size_t arg2, size_t arg3, size_t arg4)
+int syscall(int ident, int n, int arg1, int arg2, int arg3, int arg4)
 {
-    size_t ret;
+    int ret;
 
     synchronized asm
     {
@@ -93,9 +93,9 @@ size_t syscall(size_t ident, size_t n, size_t arg1, size_t arg2, size_t arg3, si
     return ret;
 }
 
-size_t syscall(size_t ident, size_t n, size_t arg1, size_t arg2, size_t arg3, size_t arg4, size_t arg5)
+int syscall(int ident, int n, int arg1, int arg2, int arg3, int arg4, int arg5)
 {
-    size_t ret;
+    int ret;
 
     synchronized asm
     {
