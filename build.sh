@@ -1,9 +1,5 @@
 #!/bin/bash
 
-if [ "$(uname -m)" != "x86_64" ]; then
-    echo "Unsupported platform."
-    exit 1
-fi
 
 if [ "$(uname)" == 'Darwin' ]; then
     OS='osx'
@@ -14,4 +10,11 @@ else
     exit 1
 fi
 
-rdmd -defaultlib=libphobos2.so -fPIC util/gensyscall.d > source/syscalld/arch/${OS}_x86_64.d
+if [ "$(uname -m)" == "x86_64" ]; then
+    rdmd util/gensyscall.d > source/syscalld/arch/${OS}_x86_64.d
+elif [ "$(uname -m)" == "i686" ]; then
+    rdmd util/gensyscall.d > source/syscalld/arch/${OS}_i686.d
+else
+    echo "Unsupported platform."
+    exit 1
+fi
