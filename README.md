@@ -2,9 +2,11 @@
 
 Raw syscall interface for D.
 
-## Prerequirements
+## Supported Platforms
 
-* Linux/OSX with x86_64 arch support only
+- Linux-x86_64
+- Linux-x86
+- OSX-x86_64
 
 ## Build
 
@@ -18,14 +20,14 @@ $ dub build --build=release
 ```d
 import syscalld : syscall, WRITE;
 
-ulong write(ulong fd, string buf)
+size_t write(size_t fd, string buf)
 {
-  return syscall(WRITE, fd, cast(ulong) buf.ptr, cast(ulong) buf.length);
+    return syscall(WRITE, fd, cast(size_t) buf.ptr, cast(size_t) buf.length);
 }
 
 void main()
 {
-  ulong stdout = 1;
-  write(stdout, "Hello\n");
+    size_t stdout = 1;
+    write(stdout, "Hello\n");
 }
 ```
