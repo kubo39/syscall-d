@@ -18,9 +18,3 @@ else
     echo "Unsupported platform."
     exit 1
 fi
-
-
-
-
-
-
