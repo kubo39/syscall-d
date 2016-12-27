@@ -11,9 +11,9 @@ else
 fi
 
 if [ "$(uname -m)" == "x86_64" ]; then
-    rdmd util/gensyscall.d > source/syscalld/arch/${OS}_x86_64.d
+    rdmd util/gensyscall.d > source/syscalld/os/${OS}_x86_64.d
 elif [ "$(uname -m)" == "i686" ]; then
-    rdmd util/gensyscall.d > source/syscalld/arch/${OS}_x86.d
+    rdmd util/gensyscall.d > source/syscalld/os/${OS}_x86.d
 else
     echo "Unsupported platform."
     exit 1
