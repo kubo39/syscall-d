@@ -7,6 +7,7 @@ Raw syscall interface for D.
 - Linux-x86_64
 - Linux-x86
 - OSX-x86_64
+- FreeBSD-x86_64
 
 ## Build
 
