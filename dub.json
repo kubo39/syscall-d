@@ -3,6 +3,9 @@
     "description": "syscall interface for D",
     "license": "MIT",
     "authors": ["kubo39"],
+    "dependencies-linux": {
+        "mir-linux-kernel": "~>1.0.0"
+    },
     "targetName": "syscall",
     "targetType": "staticLibrary",
     "targetPath": "build",

@@ -9,6 +9,24 @@ Raw syscall interface for D.
 - OSX-x86_64
 - FreeBSD-x86_64
 
+## Partially Supported Platforms (C syscall interface only)
+
+- Linux-Alpha
+- Linux-ARM
+- Linux-AArch64
+- Linux-HPPA
+- Linux-HPPA64
+- Linux-IA64
+- Linux-MIPS32
+- Linux MIPS64
+- Linux-PPC
+- Linux-PPC64
+- Linux-SPARC
+- Linux-SPARC64
+- Linux-SuperH
+- Linux-S390
+- Linux-SystemZ (S390X)
+
 ## Build
 
 ```
