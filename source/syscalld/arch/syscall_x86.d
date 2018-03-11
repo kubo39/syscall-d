@@ -1,10 +1,14 @@
 module syscalld.arch.syscall_x86;
 
+version(D_InlineAsm_X86):
+@nogc:
+nothrow:
+
 int syscall(int ident)
 {
     int ret;
 
-    synchronized asm
+    synchronized asm @nogc nothrow
     {
         mov EAX, ident;
         int 0x80;
@@ -17,7 +21,7 @@ int syscall(int ident, int n)
 {
     int ret;
 
-    synchronized asm
+    synchronized asm @nogc nothrow
     {
         mov EAX, ident;
         mov EBX, n[EBP];
@@ -31,7 +35,7 @@ int syscall(int ident, int n, int arg1)
 {
     int ret;
 
-    synchronized asm
+    synchronized asm @nogc nothrow
     {
         mov EAX, ident;
         mov EBX, n[EBP];
@@ -46,7 +50,7 @@ int syscall(int ident, int n, int arg1, int arg2)
 {
     int ret;
 
-    synchronized asm
+    synchronized asm @nogc nothrow
     {
         mov EAX, ident;
         mov EBX, n[EBP];
@@ -62,7 +66,7 @@ int syscall(int ident, int n, int arg1, int arg2, int arg3)
 {
     int ret;
 
-    synchronized asm
+    synchronized asm @nogc nothrow
     {
         mov EAX, ident;
         mov EBX, n[EBP];
@@ -79,7 +83,7 @@ int syscall(int ident, int n, int arg1, int arg2, int arg3, int arg4)
 {
     int ret;
 
-    synchronized asm
+    synchronized asm @nogc nothrow
     {
         mov EAX, ident;
         mov EBX, n[EBP];
@@ -97,7 +101,7 @@ int syscall(int ident, int n, int arg1, int arg2, int arg3, int arg4, int arg5)
 {
     int ret;
 
-    synchronized asm
+    synchronized asm @nogc nothrow
     {
         mov EAX, ident;
         mov EBX, n[EBP];

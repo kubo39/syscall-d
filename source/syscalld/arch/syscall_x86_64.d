@@ -1,12 +1,14 @@
 module syscalld.arch.syscall_x86_64;
 
 version(D_InlineAsm_X86_64):
+@nogc:
+nothrow:
 
 size_t syscall(size_t ident)
 {
     size_t ret;
 
-    synchronized asm
+    synchronized asm @nogc nothrow
     {
         mov RAX, ident;
         syscall;
@@ -19,7 +21,7 @@ size_t syscall(size_t ident, size_t n)
 {
     size_t ret;
 
-    synchronized asm
+    synchronized asm @nogc nothrow
     {
         mov RAX, ident;
         mov RDI, n[RBP];
@@ -33,7 +35,7 @@ size_t syscall(size_t ident, size_t n, size_t arg1)
 {
     size_t ret;
 
-    synchronized asm
+    synchronized asm @nogc nothrow
     {
         mov RAX, ident;
         mov RDI, n[RBP];
@@ -48,7 +50,7 @@ size_t syscall(size_t ident, size_t n, size_t arg1, size_t arg2)
 {
     size_t ret;
 
-    synchronized asm
+    synchronized asm @nogc nothrow
     {
         mov RAX, ident;
         mov RDI, n[RBP];
@@ -64,7 +66,7 @@ size_t syscall(size_t ident, size_t n, size_t arg1, size_t arg2, size_t arg3)
 {
     size_t ret;
 
-    synchronized asm
+    synchronized asm @nogc nothrow
     {
         mov RAX, ident;
         mov RDI, n[RBP];
@@ -81,7 +83,7 @@ size_t syscall(size_t ident, size_t n, size_t arg1, size_t arg2, size_t arg3, si
 {
     size_t ret;
 
-    synchronized asm
+    synchronized asm @nogc nothrow
     {
         mov RAX, ident;
         mov RDI, n[RBP];
@@ -99,7 +101,7 @@ size_t syscall(size_t ident, size_t n, size_t arg1, size_t arg2, size_t arg3, si
 {
     size_t ret;
 
-    synchronized asm
+    synchronized asm @nogc nothrow
     {
         mov RAX, ident;
         mov RDI, n[RBP];
