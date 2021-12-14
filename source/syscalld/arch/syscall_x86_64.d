@@ -1,5 +1,6 @@
 module syscalld.arch.syscall_x86_64;
 
+version(Posix):
 version(D_InlineAsm_X86_64):
 @nogc:
 nothrow:
